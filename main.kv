@@ -1,0 +1,129 @@
+<StartScreen>:
+    canvas.before:
+        Color:
+            rgba: 0.95, 0.95, 0.95, 1  # светлый фон
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 15
+
+        Label:
+            text: 'Кибербезопасность: Тест'
+            font_size: 36
+            bold: True
+            color: 0.1, 0.1, 0.1, 1
+
+        TextInput:
+            id: name_input
+            hint_text: 'Введите имя'
+            background_color: 1, 1, 1, 1
+            foreground_color: 0, 0, 0, 1
+            size_hint_y: None
+            height: 60
+            multiline: False
+            on_text: root.check_input(self, self.text)
+
+        Button:
+            id: start_btn
+            text: "Начать тест"
+            size_hint_y: None
+            height: 50
+            background_color: 0.3, 0.5, 0.8, 1
+            color: 1, 1, 1, 1
+            disabled: True
+            on_press: root.start_test(self)
+
+<QuestionScreen>:
+    canvas.before:
+        Color:
+            rgba: 0.95, 0.95, 0.95, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 15
+
+        Label:
+            id: question_label
+            text: 'Вопрос'
+            font_size: 24
+            size_hint_y: None
+            height: 60
+            color: 0.1, 0.1, 0.1, 1
+
+        BoxLayout:
+            id: answers_container
+            orientation: 'vertical'
+            spacing: 10
+
+        Label:
+            id: result_label
+            size_hint_y: None
+            height: 40
+            color: 0.6, 0.2, 0.2, 1
+
+        BoxLayout:
+            size_hint_y: None
+            height: 40
+            spacing: 10
+
+            Button:
+                id: prev_btn
+                text: 'Назад'
+                background_color: 0.7, 0.7, 0.7, 1
+                color: 1, 1, 1, 1
+                on_press: root.prev_question(self)
+
+            Button:
+                id: next_btn
+                text: 'Вперёд'
+                background_color: 0.3, 0.5, 0.8, 1
+                color: 1, 1, 1, 1
+                on_press: root.next_question(self)
+
+            Button:
+                id: finish_btn
+                text: 'Завершить'
+                background_color: 0.4, 0.7, 0.4, 1
+                color: 1, 1, 1, 1
+                on_press: root.finish_test(self)
+
+        Label:
+            id: score_label
+            size_hint_y: None
+            height: 30
+            color: 0, 0, 0.8, 1
+
+<ResultsScreen>:
+    canvas.before:
+        Color:
+            rgba: 0.95, 0.95, 0.95, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 20
+
+        Label:
+            id: final_result
+            text: 'Результат'
+            font_size: 24
+            color: 0.1, 0.1, 0.1, 1
+
+        Button:
+            text: 'Пройти снова'
+            size_hint_y: None
+            height: 50
+            background_color: 0.3, 0.5, 0.8, 1
+            color: 1, 1, 1, 1
+            on_press: root.retry_test(self)
